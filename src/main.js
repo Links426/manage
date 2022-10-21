@@ -18,14 +18,7 @@ import store from './store'
 // 设置跟路径url地址
 
 
-import {Button} from 'element-ui'
-import {Form} from 'element-ui'
-import {Input} from 'element-ui'
-import {FormItem} from 'element-ui' 
-Vue.use(Form)
-Vue.use(FormItem)
-Vue.use(Input)
-Vue.use(Button)
+
 
 
 

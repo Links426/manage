@@ -52,8 +52,8 @@ export default {
     return {
       // 这是登陆表单的数据绑定对象
       loginForm: {
-        username: "",
-        password: "",
+        username: "admin",
+        password: "123456",
       },
       // 表单的验证规则对象
       loginFormRules: {
@@ -89,17 +89,25 @@ export default {
     },
     login() {
       // validate官方文档中,自身使用有回调函数
-        // 在紧挨着await的函数添加一个async,把它变成一个异步任务
-      this.$refs.loginFormRef.validate(async valid => {
+      // 在紧挨着await的函数添加一个async,把它变成一个异步任务
+      this.$refs.loginFormRef.validate(async (valid) => {
         // 最后返回一个valid,是一个布尔值
         // 如果valid为false,返回
         if (!valid) return;
         // 发起请求
-        
+
         //  ls的返回值是promise,因此可以用await和async来简化promise操作
-         const {data:res} =  await this.$api.login(this.loginForm.username,this.loginForm.password)
-         if(res.meta.status !== 200) alert('登陆失败')
-         else(alert('登陆成功'))
+        const { data: res } = await this.$api.login(
+          this.loginForm.username,
+          this.loginForm.password
+        );
+        if (res.meta.status !== 200) return this.$message.error("登陆失败");
+        this.$message.success("登陆成功");
+        console.log(res);
+        // 把token保存到sessionStorage(仅会话期间生效)
+        window.sessionStorage.setItem("token", res.data.token);
+        // 进行路由跳转
+        this.$router.push("/home");
       });
     },
   },
