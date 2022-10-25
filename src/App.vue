@@ -10,7 +10,16 @@
 
     components: {
 
-    }
+    },mounted() {
+      this.getData()
+    },
+    methods: {
+      getData() {
+        // this.$axios.get('/api/get/user').then(res=>{
+        //   console.log(res);
+        // })
+      }
+    },
   }
 </script>
 <style>

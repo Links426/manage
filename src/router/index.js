@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login'
 import Home from '../components/Home.vue'
+import Welcome from '../components/Welcome.vue'
+import Users from '../components/user/Users.vue'
 
 Vue.use(VueRouter)
 
@@ -12,7 +14,13 @@ const router = new VueRouter({
     // 如果访问的是斜线,重定向跳转到login
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
-    { path: '/home', component: Home }
+    // 子路由
+    // 重定向,只要访问home组件,就展示welcome
+    { path: '/home', component: Home ,
+      redirect:'/Welcome',children:[
+      {path:'/welcome',component:Welcome},
+      {path:'/users',component:Users}
+    ]}
   ]
 })
 
