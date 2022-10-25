@@ -47,45 +47,45 @@
 </template>
 <script>
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
       // 这是登陆表单的数据绑定对象
       loginForm: {
-        username: "admin",
-        password: "123456",
+        username: 'admin',
+        password: '123456',
       },
       // 表单的验证规则对象
       loginFormRules: {
         // 验证用户名是否合法
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
+          { required: true, message: '请输入用户名', trigger: 'blur' },
           {
             min: 3,
             max: 10,
-            message: "长度在 3 到 10 个字符",
-            trigger: "blur",
+            message: '长度在 3 到 10 个字符',
+            trigger: 'blur',
           },
         ],
         // 验证密码是否合法
         password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
+          { required: true, message: '请输入密码', trigger: 'blur' },
           {
             min: 6,
             max: 15,
-            message: "长度在 6 到 15 个字符",
-            trigger: "blur",
+            message: '长度在 6 到 15 个字符',
+            trigger: 'blur',
           },
         ],
       },
-    };
+    }
   },
   methods: {
     // 点击重置按钮
     resetLoginForm() {
       // 使用form的method方法来清除表单
       // ref可以调用组件中的方法：
-      this.$refs.loginFormRef.resetFields();
+      this.$refs.loginFormRef.resetFields()
     },
     login() {
       // validate官方文档中,自身使用有回调函数
@@ -93,25 +93,25 @@ export default {
       this.$refs.loginFormRef.validate(async (valid) => {
         // 最后返回一个valid,是一个布尔值
         // 如果valid为false,返回
-        if (!valid) return;
+        if (!valid) return
         // 发起请求
 
         //  ls的返回值是promise,因此可以用await和async来简化promise操作
         const { data: res } = await this.$api.login(
           this.loginForm.username,
           this.loginForm.password
-        );
-        if (res.meta.status !== 200) return this.$message.error("登陆失败");
-        this.$message.success("登陆成功");
-        console.log(res);
+        )
+        if (res.meta.status !== 200) return this.$message.error('登陆失败')
+        this.$message.success('登陆成功')
+        // console.log(res)
         // 把token保存到sessionStorage(仅会话期间生效)
-        window.sessionStorage.setItem("token", res.data.token);
+        window.sessionStorage.setItem('token', res.data.token)
         // 进行路由跳转
-        this.$router.push("/home");
-      });
+        this.$router.push('/home')
+      })
     },
   },
-};
+}
 </script>
 <style lang="less" scoped>
 .login_container {

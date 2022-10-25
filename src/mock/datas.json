@@ -1,0 +1,29 @@
+{
+
+        "total": 4,
+        "pagenum": 1,
+        "users": [
+            {
+                "id": 25,
+                "username": "tige117",
+                "mobile": "18616358651",
+                "type": 0,
+                "email": "tige112@163.com",
+                "create_time": "2017-11-09T20:36:26.000Z",
+                "mg_state": true, 
+                "role_name": "炒鸡管理员"
+            },
+            {
+                "id": 37,
+                "username": "XLin2048",
+                "mobile": "13814676164",
+                "type": 0,
+                "email": "12834814@163.com",
+                "create_time": "2017-11-09T20:36:41.000Z",
+                "mg_state": false, 
+                "role_name": "测试角色2"
+            }
+        ],
+        "meta":{"msg":"获取管理员列表成功","status":"200"}
+    
+}

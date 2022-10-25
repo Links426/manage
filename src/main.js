@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import './mock/mockServe'
+
+
 // 把api.js里所有函数导入到api中
 import * as api from './axios/api.js'
 
