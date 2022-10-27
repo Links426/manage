@@ -37,33 +37,22 @@
         </el-table-column>
         <el-table-column prop="mg_state" label="状态">
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.mg_state" 
-            @change="userStateChanged(scope.row)"></el-switch>
+            <el-switch v-model="scope.row.mg_state">
+
+            </el-switch>
           </template>
         </el-table-column>
         <el-table-column prop="" label="操作">
-          <template slot-scope="scope">
-            <el-tooltip class="item" effect="dark" content="编辑" placement="top" :enterable="false">
-              <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
-            </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="删除" placement="top" :enterable="false">
-              <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
-            </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="设置" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
-            </el-tooltip>
-          </template>
+          <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+          <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+          <el-button type="warning" icon="el-icon-delete" size="mini"></el-button>
         </el-table-column>
       </el-table>
 
       <!-- 分页区域 -->
-      <el-pagination
-      :current-page="queryInfo.pagenum"
-      :page-sizes="[1, 2, 5, 10]"
-      :page-size="queryInfo.pagesize"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="total">
-    </el-pagination>
+      <el-pagination :current-page="queryInfo.pagenum" :page-sizes="[1, 2, 5, 10]" :page-size="queryInfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper" :total="200">
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -77,7 +66,7 @@
           pagesize: 2,
         },
         userList: [],
-        total: 2
+        total: ''
       }
     },
     created() {
@@ -87,16 +76,13 @@
     methods: {
       async getUserList() {
         let { data: res } = await this.$api.users()
+        console.log(res.users);
         this.userList = res.users
         this.total = res.total
         if (res.meta.status !== 200) return
         this.$message.error('获取用户列表失败')
-
+   
       },
-      // 监听switch开关状态改变
-      userStateChanged(Info){
-        console.log(Info);
-      }
     },
 
 
